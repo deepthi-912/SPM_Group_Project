@@ -1,6 +1,9 @@
-﻿namespace Appointments_API;
+
+
+namespace Appointments_API;
 
 public class WeatherForecast
+    
 {
     public DateOnly Date { get; set; }
 
