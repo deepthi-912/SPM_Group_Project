@@ -17,6 +17,7 @@ namespace HWK4
             if (!dataContext.Appointments.Any())
             {
                 List<Appointments> todos = new();
+                
                 //{
                 //    new Expenditures { ID = 01, ExpenditureType = "Rent", Expenditure = 1000},
                 //    new Expenditures { ID = 02,  ExpenditureType = "Groceries", Expenditure = 200},
