@@ -1,6 +1,8 @@
+//Database for ccreating Doctor Appointments 
 create database Appointments;
 select doctor_id from Appointments.Appointments;
 
+//Database Table Creation 
 CREATE TABLE  Appointments.Appointments(
   doctor_id INT NOT NULL,
   patient_id INT NOT NULL,
@@ -13,6 +15,7 @@ CREATE TABLE  Appointments.Appointments(
   patient_age INT NOT NULL
 );
 
+//Insertion of values 
 INSERT INTO Appointments.Appointments(doctor_id, patient_id, appointment_id, appointment_time, patient_name, doctor_name, doctor_department, patient_disease, patient_age) VALUES
 (1, 1, 1, '2023-03-05 09:00:00', 'John Doe', 'Dr. Smith', 'Cardiology', 'Heart Attack', 56),
 (2, 2, 2, '2023-03-06 10:00:00', 'Jane Doe', 'Dr. Lee', 'Oncology', 'Breast Cancer', 42),
