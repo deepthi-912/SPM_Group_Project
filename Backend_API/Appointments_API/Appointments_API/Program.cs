@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+//Using C# inbuilt libraries and entityFramework Core 
+using System.Text.Json.Serialization;
 using HWK4;
 using HWK4.Data;
 using HWK4.Interfaces;
@@ -7,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the container. 
 
 builder.Services.AddControllers();
 builder.Services.AddTransient<Seed>();
