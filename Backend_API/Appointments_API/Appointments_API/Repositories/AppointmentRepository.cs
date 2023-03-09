@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using HWK4.Data;
 using HWK4.Interfaces;
 using HWK4.Models;
