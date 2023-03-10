@@ -1,4 +1,4 @@
-//Importing C# libraries 
+//Importing C# libraries for implementing controller via Http Get method 
 using System;
 using HWK4.Interfaces;
 using HWK4.Models;
