@@ -1,9 +1,9 @@
 using System;
-using HWK4.Data;
-using HWK4.Interfaces;
-using HWK4.Models;
+using Appointments_API.Data;
+using Appointments_API.Interfaces;
+using Appointments_API.Models;
 
-namespace HWK4.Repositories
+namespace Appointments_API.Repositories
 {
     public class AppointmentRepository : IAppointmentRepository
     {
@@ -14,11 +14,21 @@ namespace HWK4.Repositories
             _context = context;
         }
 
+        /// <summary>
+        /// GetItems method returns the appointment details of all patients.
+        /// </summary>
+        /// <returns>appointment details of all patient id</returns>
+
         public ICollection<Appointments> GetItems()
         {
             return _context.Appointments.ToList();
         }
 
+        /// <summary>
+        /// GetItem method returns the appointment details of a paticular appointment id.
+        /// </summary>
+        /// <returns>appointment details of a patient id</returns>
+        
         public Appointments GetItem(int id)
         {
             return _context.Appointments.Where(todo => todo.appointment_id == id).FirstOrDefault();
@@ -28,6 +38,11 @@ namespace HWK4.Repositories
         {
             return _context.Appointments.Any(todo => todo.appointment_id == id);
         }
+
+        /// <summary>
+        /// CreateItem method creates a new appointment.
+        /// </summary>
+        /// <returns>creates a new item if doesn't exist</returns>
 
         public bool CreateItem(Appointments todo)
         {
@@ -39,11 +54,21 @@ namespace HWK4.Repositories
             return Save();
         }
 
+        /// <summary>
+        /// UpdateItem method updates a new appointment.
+        /// </summary>
+        /// <returns>updates a item</returns>
+
         public bool UpdateItem(Appointments todo)
         {
             _context.Update(todo);
             return Save();
         }
+
+        /// <summary>
+        /// DeleteItem method deletes a appointment.
+        /// </summary>
+        /// <returns>deletes a item if it exists</returns>
 
         public bool DeleteItem(int id)
         {
@@ -63,9 +88,9 @@ namespace HWK4.Repositories
         }
 
         /// <summary>
-        /// getAverage method returns the average value of expenditures spent.
+        /// getAverage method returns the total appointments count.
         /// </summary>
-        /// <returns>double</returns>
+        /// <returns>int</returns>
         public int getTotalAppointmentsCount()
         {
             int count = 0;
@@ -74,10 +99,10 @@ namespace HWK4.Repositories
         }
 
         /// <summary>
-        /// getMinimumExpenditure method returns the minimum value of the expenditure values.
+        /// getAppointmentsBetweenDates method returns the appointment details by date.
         /// </summary>
-        /// <returns>Bill</returns>
-
+        /// <returns>appointment details of all patients for a particular date</returns>
+        
         public List<Appointments> getAppointmentsByDate(DateTime dt)
         {
             int value = int.MaxValue;
@@ -93,6 +118,11 @@ namespace HWK4.Repositories
             }
             return appointmentsDate;
         }
+
+        /// <summary>
+        /// getAppointmentsBetweenDates method returns the appointment details between dates.
+        /// </summary>
+        /// <returns>appointment details of all patients between dates</returns>
 
         public List<Appointments> getAppointmentsBetweenDates(DateTime dt1, DateTime dt2)
         {
@@ -111,9 +141,9 @@ namespace HWK4.Repositories
         }
 
         /// <summary>
-        /// getMaximumExpenditure method returns the maximum value of the expenditure values.
+        /// getAppointmentsByPatient method returns the appointment details of a particular doctor.
         /// </summary>
-        /// <returns>Bill</returns>
+        /// <returns>appointment details of a doctor id</returns>
 
         public List<Appointments> getAppointmentsByDoctor(int doctorId)
         {
@@ -131,9 +161,9 @@ namespace HWK4.Repositories
         }
 
         /// <summary>
-        /// getMaximumExpenditure method returns the maximum value of the expenditure values.
+        /// getAppointmentsByPatient method returns the appointment details of a particular patient.
         /// </summary>
-        /// <returns>Bill</returns>
+        /// <returns>appointment details of a patient id</returns>
 
         public List<Appointments> getAppointmentsByPatient(int patientId)
         {
