@@ -1,11 +1,10 @@
-//Importing C# libraries for implementing controller via Http Get method 
 using System;
-using HWK4.Interfaces;
-using HWK4.Models;
-using HWK4.Repositories;
+using Appointments_API.Interfaces;
+using Appointments_API.Models;
+using Appointments_API.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HWK4.Controllers
+namespace Appointments_API.Controllers
 {
     [ApiController]
     [Route("[Controller]")]
@@ -19,7 +18,7 @@ namespace HWK4.Controllers
             _todoRepository = todoRepository;
         }
         /// <summary>
-        /// GetItems is to get all the items in the expeditures .
+        /// GetItems is to get all the items in the Appointments .
         /// </summary>
         /// <returns>Items list</returns>
 
@@ -33,7 +32,7 @@ namespace HWK4.Controllers
         }
 
         /// <summary>
-        /// GetItem function gets expenditure details of the ID given.It returns expenditures of each ID if it is found else it returns Notfound.
+        /// GetItem function gets appointment details of the ID given.It returns appointments of each ID if it is found else it returns Notfound.
         /// </summary>
         /// <param name="id"></param>
         /// <returns>400(notfound) or item</returns>
@@ -56,7 +55,7 @@ namespace HWK4.Controllers
         }
 
         /// <summary>
-        /// CreateItem method adds the expenditure values in the list.It returns Badrequest message if the values are null
+        /// CreateItem method adds the appointment values in the list.It returns Badrequest message if the values are null
         /// and return Successfully added if the items are added.
         /// </summary>
         /// <param name="todo"></param>
@@ -116,7 +115,7 @@ namespace HWK4.Controllers
         }
 
         /// <summary>
-        /// DeleteItem deletes the expenditure value for a given ID
+        /// DeleteItem deletes the appointment value for a given ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns>No maching id or Item deleted</returns>
@@ -153,9 +152,9 @@ namespace HWK4.Controllers
         }
 
         /// <summary>
-        /// GetMinimumAmount method gets the minimum amount of expense values.
+        /// GetAppointmentsByDate method gets the appointments by date.
         /// </summary>
-        /// <returns>highest expenditure value</returns>
+        /// <returns>appointments by date</returns>
         [HttpGet("Analysis-GetAppointmentsByDate")]
         [ProducesResponseType(200, Type = typeof(List<Appointments>))]
 
@@ -165,9 +164,9 @@ namespace HWK4.Controllers
         }
 
         /// <summary>
-        /// GetMinimumAmount method gets the minimum amount of expense values.
+        /// GetAppointmentsBetweenDates method gets the appointments between dates.
         /// </summary>
-        /// <returns>highest expenditure value</returns>
+        /// <returns>Appointments Between Dates</returns>
         [HttpGet("Analysis-GetAppointmentsBetweenDates")]
         [ProducesResponseType(200, Type = typeof(List<Appointments>))]
 
@@ -177,9 +176,9 @@ namespace HWK4.Controllers
         }
 
         /// <summary>
-        /// GetMinimumAmount method gets the minimum amount of expense values.
+        /// GetAppointmentsByDoctor method gets the appointments by doctor.
         /// </summary>
-        /// <returns>highest expenditure value</returns>
+        /// <returns>Appointments By Doctor id</returns>
         [HttpGet("Analysis-GetAppointmentsByDoctor")]
         [ProducesResponseType(200, Type = typeof(List<Appointments>))]
 
@@ -189,9 +188,9 @@ namespace HWK4.Controllers
         }
 
         /// <summary>
-        /// GetMinimumAmount method gets the minimum amount of expense values.
+        /// GetAppointmentsByPatient method gets the appoimtments by patient.
         /// </summary>
-        /// <returns>highest expenditure value</returns>
+        /// <returns>Appointments By Patient</returns>
         [HttpGet("Analysis-GetAppointmentsByPatient")]
         [ProducesResponseType(200, Type = typeof(List<Appointments>))]
 
