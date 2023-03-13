@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using HWK4.Models;
+using Appointments_API.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace HWK4.Data
+namespace Appointments_API.Data
 {
     public class DataContext : DbContext
     {
@@ -13,4 +13,3 @@ namespace HWK4.Data
         public DbSet<Appointments> Appointments { get; set; }
     }
 }
-
