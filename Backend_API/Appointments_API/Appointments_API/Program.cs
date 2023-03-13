@@ -1,9 +1,8 @@
-//Using C# inbuilt libraries and entityFramework Core 
 using System.Text.Json.Serialization;
-using HWK4;
-using HWK4.Data;
-using HWK4.Interfaces;
-using HWK4.Repositories;
+using Appointments_API;
+using Appointments_API.Data;
+using Appointments_API.Interfaces;
+using Appointments_API.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
