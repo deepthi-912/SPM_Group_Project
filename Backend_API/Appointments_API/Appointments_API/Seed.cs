@@ -23,4 +23,3 @@ namespace Appointments_API
         }
     }
 }
-
