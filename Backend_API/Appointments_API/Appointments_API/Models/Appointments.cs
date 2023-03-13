@@ -1,29 +1,23 @@
-//Using Interface inbuilt libraries 
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace HWK4.Models
+namespace Appointments_API.Models
 {
     public class Appointments
     {
         /// <summary>
-        /// Id is a unique id of each object
+        /// These are columns and types of data in the Appointments database for Appointments table
+        /// which are taken as columns file class.
         /// </summary>
-        private static int nextID = 1;
-
-        /// <summary>
-        /// These are columns and types of data in the Expenditures CSV file which are taken as attributes here in the Todo class.
-        /// </summary>
-        /// <param name="expenditureType"></param>
-        /// <param name="expenditure"></param>
-        //public Expenditures(String expenditureType, int expenditure)
-        //{
-        //    ExpenditureType = expenditureType;
-        //    Expenditure = expenditure;
-        //    ID = nextID;
-        //    nextID++;
-        //}
-
+        /// <param name="doctor_id"></param>
+        /// <param name="patient_id"></param>
+        /// <param name="appointment_id"></param>
+        /// <param name="appointment_time"></param>
+        /// <param name="patient_name"></param>
+        /// <param name="doctor_name"></param>
+        /// <param name="doctor_department"></param>
+        /// <param name="patient_disease"></param>
+        /// <param name="patient_age"></param>
         /// <summary>
         /// Declaration of the attributes are done here
         /// </summary>
