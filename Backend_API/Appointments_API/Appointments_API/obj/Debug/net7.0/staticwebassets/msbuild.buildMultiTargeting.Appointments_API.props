@@ -1,4 +1,3 @@
-
-<Project>
+﻿<Project>
   <Import Project="../build/Appointments_API.props" />
 </Project>

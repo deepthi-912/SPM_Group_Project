@@ -1,0 +1,31 @@
+﻿@page
+@model Appointments_UI.Pages.Appointments.DeleteModel
+@{
+}
+
+<br>
+<h2>Delete Todo</h2>
+
+@if (@Model.errorMessage.Length > 0) {
+    <div>@Model.errorMessage</div>
+ }
+<form method="POST">
+
+    <input type="hidden" name="id" value="@Model.todo.ID" />
+    <table>
+        <tr>
+            <td>Expenditure Type</td>
+            <td>@Model.todo.ExpenditureType</td>
+        </tr>
+        <tr>
+            <td>Expenditure</td>
+            <td>@Model.todo.Expenditure</td>
+        </tr>
+    </table>
+
+    <p></p>
+
+    <input type="submit" value="Delete" class="btn btn-primary" />
+</form>
+
+

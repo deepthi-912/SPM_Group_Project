@@ -1,0 +1,59 @@
+﻿@page
+@model Appointments_UI.Pages.Appointments.CreateModel
+@{
+}
+
+<br>
+<h2>Create Appointment</h2>
+@if (@Model.errorMessage.Length > 0)
+{
+    <div>@Model.errorMessage</div>
+}
+<form method="POST">
+    <table>
+        <tr>
+            <td>Appointment ID</td>
+            <td><input type="text" name="Expenditure Type" value="@Model.todo.appointment_id"></td>
+        </tr>
+        <tr>
+            <td>Doctor ID</td>
+            <td><input type="text" name="Expenditure Type" value="@Model.todo.doctor_id"></td>
+        </tr>
+        <tr>
+            <td>Patient ID</td>
+            <td><input type="text" name="Expenditure Type" value="@Model.todo.patient_id"></td>
+        </tr>
+        <tr>
+            <td>Appointment Time</td>
+            <td><input type="text" name="Expenditure Type" value="@Model.todo.appointment_time"></td>
+        </tr>
+        <tr>
+            <td>Patient Name</td>
+            <td><input type="text" name="Expenditure Type" value="@Model.todo.patient_name"></td>
+        </tr>
+        <tr>
+            <td>Doctor Name</td>
+            <td><input type="text" name="Expenditure Type" value="@Model.todo.doctor_name"></td>
+        </tr>
+        <tr>
+            <td>Doctor Department</td>
+            <td><input type="text" name="Expenditure Type" value="@Model.todo.doctor_department"></td>
+        </tr>
+        <tr>
+            <td>Patient Disease</td>
+            <td><input type="text" name="Expenditure Type" value="@Model.todo.patient_disease"></td>
+        </tr>
+        <tr>
+            <td>Patient Age</td>
+            <td><input type="text" name="Expenditure Type" value="@Model.todo.patient_age"></td>
+        </tr>
+    </table>
+    <p></p>
+
+    @if (@Model.successMessage.Length > 0) {
+        <div>@Model.successMessage</div>
+     }
+
+     <input type="submit" value="Add" class="btn btn-primary" />
+</form>
+
