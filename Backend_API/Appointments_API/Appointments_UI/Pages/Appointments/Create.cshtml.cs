@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,9 +28,9 @@ namespace Appointments_UI.Pages.Appointments
 
             todo.patient_age = int.Parse(Request.Form["patient_age"]);
 
-            if (todo.ExpenditureType.Length == 0 || todo.Expenditure==0)
+            if (todo.appointment_time==null)
             {
-                errorMessage = "Expenditure is required";
+                errorMessage = "Appointment time is required";
             }
             else
             {
@@ -38,7 +38,7 @@ namespace Appointments_UI.Pages.Appointments
                 string json = System.Text.Json.JsonSerializer.Serialize<Appointments>(todo, opt);
                 using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("http://localhost:5273");
+                    client.BaseAddress = new Uri("http://localhost:5053");
                     var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
                     var result = await client.PostAsync("Appointments", content);
                     string resultContent = await result.Content.ReadAsStringAsync();
