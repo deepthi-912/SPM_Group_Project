@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model HWK6.Pages.Expenditures.EditModel
 @{
 }
@@ -10,15 +10,39 @@
     <div>@Model.errorMessage</div>
 }
 <form method="POST">
-    <input type="hidden" name="id" value="@Model.todo.ID" />
+    <input type="hidden" name="id" value="@Model.todo.appointment_id" />
     <table>
         <tr>
-            <td>ExpenditureType</td>
-            <td><input type="text" name="Expenditure Type" value="@Model.todo.ExpenditureType"></td>
+            <td>Doctor ID</td>
+            <td><input type="text" name="Doctor ID" value="@Model.todo.doctor_id"></td>
         </tr>
         <tr>
-            <td>Expenditure</td>
-            <td><input type="number" name="Amount" value="@Model.todo.Expenditure"></td>
+            <td>Patient ID</td>
+            <td><input type="number" name="Patient ID" value="@Model.todo.patient_id"></td>
+        </tr>
+        <tr>
+            <td>Appointment Time</td>
+            <td><input type="text" name="Appointment Time" value="@Model.todo.appointment_time"></td>
+        </tr>
+        <tr>
+            <td>Patient Name</td>
+            <td><input type="text" name="Patient Name" value="@Model.todo.patient_name"></td>
+        </tr>
+        <tr>
+            <td>Doctor Name</td>
+            <td><input type="text" name="Doctor Name" value="@Model.todo.doctor_name"></td>
+        </tr>
+        <tr>
+            <td>Doctor Department</td>
+            <td><input type="text" name="Doctor Department" value="@Model.todo.doctor_department"></td>
+        </tr>
+        <tr>
+            <td>Patient Disease</td>
+            <td><input type="text" name="Patient Disease" value="@Model.todo.patient_disease"></td>
+        </tr>
+        <tr>
+            <td>Patient Age</td>
+            <td><input type="text" name="Patient Age" value="@Model.todo.patient_age"></td>
         </tr>
     </table>
     <p></p>
