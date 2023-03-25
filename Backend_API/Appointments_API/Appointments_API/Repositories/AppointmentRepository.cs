@@ -179,6 +179,26 @@ namespace Appointments_API.Repositories
             }
             return appointmentsDate;
         }
+
+        /// <summary>
+        /// getAppointmentsByDisease method returns all the appointment details of a particular disease.
+        /// </summary>
+        /// <returns>appointment details of a disease</returns>
+
+        public List<Appointments> getAppointmentsByDisease(string disease)
+        {
+            List<Appointments> expense_List = _context.Appointments.ToList();
+            List<Appointments> appointments = new List<Appointments>();
+            foreach (Appointments expense in expense_List)
+            {
+                if (expense.patient_disease == disease)
+                {
+                    appointments.Add(expense);
+                }
+
+            }
+            return appointments;
+        }
     }
 }
 

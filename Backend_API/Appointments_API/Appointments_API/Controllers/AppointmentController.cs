@@ -199,6 +199,17 @@ namespace Appointments_API.Controllers
             return Ok(_todoRepository.getAppointmentsByPatient(pid));
         }
 
+        /// <summary>
+        /// GetAppointmentsByPatient method gets the appoimtments by patient.
+        /// </summary>
+        /// <returns>Appointments By Patient</returns>
+        [HttpGet("Analysis-GetAppointmentsByDisease")]
+        [ProducesResponseType(200, Type = typeof(List<Appointments>))]
+
+        public IActionResult getAppointmentsByDisease(string disease)
+        {
+            return Ok(_todoRepository.getAppointmentsByDisease(disease));
+        }
     }
 }
 

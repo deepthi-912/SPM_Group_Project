@@ -62,11 +62,15 @@ namespace Appointments_API.Interfaces
         List<Appointments> getAppointmentsByPatient(int patientId);
 
         /// <summary>
+        /// getAppointmentsByDisease method returns the appointment details of a particular disease.
+        /// </summary>
+        /// <returns>appointment details of a disease</returns>
+        List<Appointments> getAppointmentsByDisease(string disease);
+
+        /// <summary>
         /// getAverage method returns the total appointments count.
         /// </summary>
         /// <returns>int</returns>
         int getTotalAppointmentsCount();
     }
 }
-
-
