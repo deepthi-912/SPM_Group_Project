@@ -38,7 +38,7 @@ namespace Appointments_UI.Pages.Appointments
                 string json = System.Text.Json.JsonSerializer.Serialize<Appointments>(todo, opt);
                 using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("http://localhost:5053");
+                    client.BaseAddress = new Uri("http://localhost:5071");
                     var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
                     var result = await client.PostAsync("Appointments", content);
                     string resultContent = await result.Content.ReadAsStringAsync();
