@@ -1,0 +1,70 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/deepthi/Documents/GitHub/Group_project_SPM/SPM_Group_Project/Backend_API/Appointments_API/Appointments_UI/Appointments_UI.csproj": {}
+  },
+  "projects": {
+    "/Users/deepthi/Documents/GitHub/Group_project_SPM/SPM_Group_Project/Backend_API/Appointments_API/Appointments_UI/Appointments_UI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/deepthi/Documents/GitHub/Group_project_SPM/SPM_Group_Project/Backend_API/Appointments_API/Appointments_UI/Appointments_UI.csproj",
+        "projectName": "Appointments_UI",
+        "projectPath": "/Users/deepthi/Documents/GitHub/Group_project_SPM/SPM_Group_Project/Backend_API/Appointments_API/Appointments_UI/Appointments_UI.csproj",
+        "packagesPath": "/Users/deepthi/.nuget/packages/",
+        "outputPath": "/Users/deepthi/Documents/GitHub/Group_project_SPM/SPM_Group_Project/Backend_API/Appointments_API/Appointments_UI/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/deepthi/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.200/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

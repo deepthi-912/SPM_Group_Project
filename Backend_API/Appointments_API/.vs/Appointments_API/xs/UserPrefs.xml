@@ -1,0 +1,40 @@
+﻿<Properties StartupConfiguration="{8978C8AA-FEE1-4201-ACCA-0F156C8188F8}|http">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Appointments_API/Controllers/AppointmentController.cs">
+    <Files>
+      <File FileName="Appointments_API/Controllers/AppointmentController.cs" Line="124" Column="23" />
+      <File FileName="Appointments_API/appsettings.json" />
+      <File FileName="Appointments_API/Properties/launchSettings.json" />
+      <File FileName="Appointments_API/Models/Appointments.cs" />
+      <File FileName="Appointments_API/Interfaces/IAppointmentRepository.cs" />
+      <File FileName="Appointments_API/Data/DataContext.cs" />
+      <File FileName="Appointments_API/Repositories/AppointmentRepository.cs" />
+      <File FileName="Appointments_API/appsettings.Development.json" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Appointments_API" expanded="True">
+            <Node name="Appointments_API" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="AppointmentController.cs" selected="True" />
+              </Node>
+              <Node name="Data" expanded="True" />
+              <Node name="Interfaces" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="Repositories" expanded="True" />
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Appointments__UI FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.Appointments__API PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints />
+</Properties>
