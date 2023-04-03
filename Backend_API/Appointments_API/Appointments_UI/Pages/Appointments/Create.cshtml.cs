@@ -9,7 +9,9 @@ using System.Text.Json;
 namespace Appointments_UI.Pages.Appointments
 {
     using Appointments_API.Models;
-    /// Manages the appointment details of the patient.
+    ///<summary>
+      /// Manages the appointment details of the patient.
+    ///</summary>
     
     public class CreateModel : PageModel
     {
@@ -30,8 +32,10 @@ namespace Appointments_UI.Pages.Appointments
             todo.patient_disease = Request.Form["patient_disease"];
 
             todo.patient_age = int.Parse(Request.Form["patient_age"]);
-            
-            /// Validating and Submitting the appointment details of the patient.
+           
+            ///<summary>
+               /// Validating and Submitting the appointment details of the patient.
+           ///</summary>
 
             if (todo.appointment_time==null)
             {
