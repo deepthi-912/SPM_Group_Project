@@ -1,14 +1,18 @@
+///<summary>
+    ///Frontend implementation(HTML)for implementing Create Model
+    ///</summary> 
+    
 @page
 @model Appointments_UI.Pages.Appointments.CreateModel
 @{
 }
-
 <br>
 <h2>Create Appointment</h2>
 @if (@Model.errorMessage.Length > 0)
 {
     <div>@Model.errorMessage</div>
 }
+///POST method for Creating Appointment with its required attributes 
 <form method="POST">
     <table>
         <tr>
