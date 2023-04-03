@@ -11,8 +11,10 @@ namespace Appointments_UI.Pages.Appointments
 {
     using System.ComponentModel.DataAnnotations;
     using Appointments_API.Models;
-
-     /// Obtaining and Deleting the appointment of the patient.
+     
+    ///<summary>
+      /// Obtaining and Deleting the appointment of the patient.
+    ///</summary>
     public class DeleteModel : PageModel
     {
         public Appointment todo = new();
@@ -47,7 +49,10 @@ namespace Appointments_UI.Pages.Appointments
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:5053");
-                //HTTP DELETE Request to delete the appointment details of the patient.
+                
+                ///<summary>
+                   ///HTTP DELETE Request to delete the appointment details of the patient.
+                ///</summary>
                 var response = await client.DeleteAsync("/Appointment/" + id);
                 if (response.IsSuccessStatusCode)
                 {
