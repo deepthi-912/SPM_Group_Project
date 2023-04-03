@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 namespace Appointments_UI.Pages.Appointments
 {
     using Appointments_API.Models;
-    /// gets the item inputs from the UI and displays the appointment details
+    /// Gets the item inputs from the UI and displays the appointment details
     public class GetItemModel : PageModel
     {
         public Appointment ap = new();
