@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 namespace Appointments_UI.Pages.Appointments
 {
     using Appointments_API.Models;
+    /// Gets and Returns all the appointment details of the patient.
     public class IndexModel : PageModel
     {
 
@@ -21,7 +22,7 @@ namespace Appointments_UI.Pages.Appointments
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:5071");
-                //HTTP GET
+                //HTTP GET request to get all the appointments.
                 var responseTask = client.GetAsync("Appointments");
                 responseTask.Wait();
 
