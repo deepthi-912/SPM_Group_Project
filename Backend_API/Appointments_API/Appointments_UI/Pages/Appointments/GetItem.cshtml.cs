@@ -13,21 +13,25 @@ namespace Appointments_UI.Pages.Appointments
     // gets the item from the UI and displays the details
     public class GetItemModel : PageModel
     {
-        public Appointments ap = new();
-            async void OnGet()
+        public Appointment ap = new();
+        public async void OnGet()
+        {
+
+            string id = Request.Query["appointment_id"];
+
+            using (var client = new HttpClient())
             {
-                int Id = int.Parse(Request.Form["appointment_id"]);
-                using (var client = new HttpClient())
+                client.BaseAddress = new Uri("http://localhost:5053");
+                //HTTP GET
+                var responseTask = client.GetAsync("Appointment/" + id);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
                 {
-                    var responseTask = client.GetAsync("http://localhost:5071/Appointments/" + Id);
-                    responseTask.Wait();
-                    var result = responseTask.Result;
-                    if (result.IsSuccessStatusCode)
-                    {
-                        var readTask = await result.Content.ReadAsStringAsync();
-                        ap = JsonConvert.DeserializeObject<Appointments>(readTask);
-                    }
+                    var readTask = await result.Content.ReadAsStringAsync();
+                    ap = JsonConvert.DeserializeObject<Appointment>(readTask);
+                }
             }
-         }
+        }
     }
 }
