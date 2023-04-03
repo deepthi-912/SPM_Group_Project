@@ -9,7 +9,7 @@ using System.Text.Json;
 namespace Appointments_UI.Pages.Appointments
 {
     using Appointments_API.Models;
-    /// Gets the appointment details of the patient.
+    /// Manages the appointment details of the patient.
     
     public class CreateModel : PageModel
     {
@@ -18,7 +18,8 @@ namespace Appointments_UI.Pages.Appointments
         public string successMessage = "";
         public async void OnPost()
         {
-
+            /// Assigning the appointment details of the patient to local variables.
+            
             todo.appointment_id = int.Parse(Request.Form["appointment_id"]);
             todo.doctor_id = int.Parse(Request.Form["doctor_id"]);
             todo.patient_id = int.Parse(Request.Form["patient_id"]);
@@ -29,6 +30,8 @@ namespace Appointments_UI.Pages.Appointments
             todo.patient_disease = Request.Form["patient_disease"];
 
             todo.patient_age = int.Parse(Request.Form["patient_age"]);
+            
+            /// Validating and Submitting the appointment details of the patient.
 
             if (todo.appointment_time==null)
             {
