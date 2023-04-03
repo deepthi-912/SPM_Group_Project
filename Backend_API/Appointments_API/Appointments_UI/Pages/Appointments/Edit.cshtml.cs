@@ -14,7 +14,9 @@ namespace Appointments_UI.Pages.Appointments
 {
     using Appointments_API.Models;
 
-    ///Obtaining and Editing the appointment details of the patient.
+     ///<summary>
+      ///Obtaining and Editing the appointment details of the patient.
+    ///</summary>
     public class EditModel : PageModel
     {
         public Appointment todo = new();
@@ -70,8 +72,10 @@ namespace Appointments_UI.Pages.Appointments
                     client.BaseAddress = new Uri("http://localhost:5053");
 
                     var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
-                    
-                    //HTTP PUT request to update the appropriate appointment details of the patient.
+                   
+                    ///<summary>
+                      ///HTTP PUT request to update the appropriate appointment details of the patient.
+                    ///</summary>
                     var result = await client.PutAsync("Appointment", content);
                     string resultContent = await result.Content.ReadAsStringAsync();
                     Console.WriteLine(resultContent);
