@@ -9,6 +9,8 @@ using System.Text.Json;
 namespace Appointments_UI.Pages.Appointments
 {
     using Appointments_API.Models;
+    /// Gets the appointment details of the patient.
+    
     public class CreateModel : PageModel
     {
         public Appointment todo = new();
@@ -56,4 +58,3 @@ namespace Appointments_UI.Pages.Appointments
         }
     }
 }
-
