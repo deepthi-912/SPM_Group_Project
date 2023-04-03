@@ -10,7 +10,10 @@ using Newtonsoft.Json;
 namespace Appointments_UI.Pages.Appointments
 {
     using Appointments_API.Models;
-    /// Gets the item inputs from the UI and displays the appointment details
+    
+    ///<summary>
+      /// Gets the item inputs from the UI and displays the appointment details
+    ///</summary>
     public class GetItemModel : PageModel
     {
         public Appointment ap = new();
@@ -22,7 +25,9 @@ namespace Appointments_UI.Pages.Appointments
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:5053");
-                //HTTP GET to obtain the appointment details based on the id
+                ///<summary>
+                  ///HTTP GET to obtain the appointment details based on the id
+                ///</summary>
                 var responseTask = client.GetAsync("Appointment/" + id);
                 responseTask.Wait();
                 var result = responseTask.Result;
