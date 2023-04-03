@@ -4,7 +4,7 @@
     ViewData["Title"] = "Home page";
 }
 <br>
-<h2>List of Todos</h2>
+<h2>List of Appointments</h2>
 
 <a class='btn btn-primary btn-sm' href='/Appointments/Create'>Create Appointment</a>
 <form action="/Appointments/GetItem" method="get">
@@ -39,7 +39,15 @@
         </span>
     </div>
 </form>
-<a class='btn btn-primary btn-sm' href='/Appointments/GAppointmentsCount'>Appointments Count</a>
+<form action="/Appointments/GetItemByDisease" method="get">
+    <div class="input-group">
+        <input type="text" name="disease" class="form-control" placeholder="Disease Name">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" type="submit">Get By Disease</button>
+        </span>
+    </div>
+</form>
+<a class='btn btn-primary btn-sm' href='/Appointments/AppointmentsCount'>Appointments Count</a>
 <table class="table">
     <thead>
         <tr>
