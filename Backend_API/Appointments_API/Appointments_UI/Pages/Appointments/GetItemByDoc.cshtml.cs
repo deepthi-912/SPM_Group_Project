@@ -11,7 +11,7 @@ namespace Appointments_UI.Pages.Appointments
 {
     using System.Security.Cryptography;
     using Appointments_API.Models;
-    // gets the item from the UI and displays the details
+    /// Gets the item inputs from the UI, evaluates them on the basis of assigned doctor and displays the details
     public class GetItemByDocModel : PageModel
     {
         public List<Appointment> ap = new();
@@ -23,7 +23,7 @@ namespace Appointments_UI.Pages.Appointments
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:5053");
-                //HTTP GET
+                ///HTTP GET to obtain the appointment details based on the assigned doctor.
                 var responseTask = client.GetAsync("Appointment/Analysis-GetAppointmentsByDoctor?dId=" + id);
                 responseTask.Wait();
                 var result = responseTask.Result;
