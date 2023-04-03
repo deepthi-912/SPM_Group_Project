@@ -1,33 +1,39 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
+using Appointments_API.Models;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text.Json;
 using Newtonsoft.Json;
 
-namespace Appointments_UI.Pages.Appointments
+namespace Appointments_UI.Pages.Shared
 {
     using Appointments_API.Models;
-    // gets the item from the UI and displays the details
-    public class GetItemModel : PageModel
+    public class IndexModel : PageModel
     {
-        public Appointments ap = new();
-            async void OnGet()
+
+        public List<Appointment> Appointments = new();
+
+        public async void OnGet()
+        {
+            using (var client = new HttpClient())
             {
-                int Id = int.Parse(Request.Form["appointment_id"]);
-                using (var client = new HttpClient())
+                ////HTTP GET
+                client.BaseAddress = new Uri("http://localhost:5053");
+                var responseTask = client.GetAsync("Appointment");
+                responseTask.Wait();
+                var result = responseTask.Result;
+
+                if (result.IsSuccessStatusCode)
                 {
-                    var responseTask = client.GetAsync("http://localhost:5071/Appointments/" + Id);
-                    responseTask.Wait();
-                    var result = responseTask.Result;
-                    if (result.IsSuccessStatusCode)
-                    {
-                        var readTask = await result.Content.ReadAsStringAsync();
-                        ap = JsonConvert.DeserializeObject<Appointments>(readTask);
-                    }
+                    var readTask = await result.Content.ReadAsStringAsync();
+                    Appointments = JsonConvert.DeserializeObject<List<Appointment>>(readTask);
+                }
+
             }
-         }
+
+        }
     }
 }
