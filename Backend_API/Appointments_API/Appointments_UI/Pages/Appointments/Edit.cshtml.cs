@@ -14,7 +14,7 @@ namespace Appointments_UI.Pages.Appointments
 {
     using Appointments_API.Models;
 
-    //Edits the item values
+    ///Obtaining and Editing the appointment details of the patient.
     public class EditModel : PageModel
     {
         public Appointment todo = new();
@@ -27,7 +27,8 @@ namespace Appointments_UI.Pages.Appointments
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:5053");
-                //HTTP GET
+                
+                //HTTP GET request to get the appropriate appointment details of the patient to edit.
                 var responseTask = client.GetAsync("Appointment/" + id);
                 responseTask.Wait();
 
@@ -42,6 +43,7 @@ namespace Appointments_UI.Pages.Appointments
 
         public async void OnPost()
         {
+            /// Assigning the appointment details of the patient to local variables.
 
             todo.appointment_id = int.Parse(Request.Form["id"]);
             todo.doctor_id = int.Parse(Request.Form["doctor_id"]);
@@ -68,7 +70,8 @@ namespace Appointments_UI.Pages.Appointments
                     client.BaseAddress = new Uri("http://localhost:5053");
 
                     var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
-
+                    
+                    //HTTP PUT request to update the appropriate appointment details of the patient.
                     var result = await client.PutAsync("Appointment", content);
                     string resultContent = await result.Content.ReadAsStringAsync();
                     Console.WriteLine(resultContent);
