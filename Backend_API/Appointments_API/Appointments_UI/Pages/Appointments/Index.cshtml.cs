@@ -27,7 +27,7 @@ namespace Appointments_UI.Pages.Appointments
                 client.BaseAddress = new Uri("http://localhost:5071");
                 
                 ///<summary>
-                   //HTTP GET request to get all the appointments.
+                   ///HTTP GET request to get all the appointments.
                 ///</summary>
                 var responseTask = client.GetAsync("Appointments");
                 responseTask.Wait();
