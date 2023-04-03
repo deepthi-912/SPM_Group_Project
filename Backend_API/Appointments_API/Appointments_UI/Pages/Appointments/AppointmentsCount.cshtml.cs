@@ -1,3 +1,4 @@
+///Importing C# libraries 
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 
+///<summary>
+ ///C# implementation for Maintaining Appointment Count 
+///</summary>
 namespace Appointments_UI.Pages.Appointments
 {
     //Gets the maximum value
