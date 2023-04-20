@@ -34,4 +34,3 @@ namespace Appointments_API.Models
 
     }
 }
-
