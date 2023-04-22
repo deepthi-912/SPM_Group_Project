@@ -1,3 +1,4 @@
+///Developing database for Creating Appointment details backend structure 
 create database Appointments;
 
 CREATE TABLE Appointments.Appointments (
