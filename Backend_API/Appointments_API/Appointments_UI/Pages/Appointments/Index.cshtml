@@ -1,5 +1,6 @@
+
 @page
-@model Appointments_UI.Pages.Appointments.IndexModel
+@model AppointmentsDetails.Pages.Appointments.IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
@@ -7,6 +8,7 @@
 <h2>List of Todos</h2>
 
 <a class='btn btn-primary btn-sm' href='/Appointments/Create'>Create Appointment</a>
+
 <table class="table">
     <thead>
         <tr>
@@ -23,7 +25,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.appointments)
+        @foreach (var item in Model.Appointments)
         {
             <tr>
                 <td>@item.appointment_id</td>
@@ -37,8 +39,8 @@
                 <td>@item.patient_age</td>
 
                 <td>
-                    <a class="btn btn-primary btn-sm" href="/Appointments/Edit?id=@item.appointment_id">Edit</a>
-                    <a class="btn btn-danger btn-sm" href="/Appointments/Delete?id=@item.appointment_id">Delete</a>
+                    <a class="btn btn-primary btn-sm" href="/Appointments/@item.appointment_id">Edit</a>
+                    <a class="btn btn-danger btn-sm" href="/Appointments/@item.appointment_id">Delete</a>
                 </td>
             </tr>
         }

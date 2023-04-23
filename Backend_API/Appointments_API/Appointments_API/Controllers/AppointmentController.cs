@@ -27,7 +27,7 @@ namespace Appointments_API.Controllers
 
         public IActionResult GetItems()
         {
-            _logger.Log(LogLevel.Information, "Get Expenditures");
+            _logger.Log(LogLevel.Information, "Get Appointments");
             return Ok(_todoRepository.GetItems());
         }
 

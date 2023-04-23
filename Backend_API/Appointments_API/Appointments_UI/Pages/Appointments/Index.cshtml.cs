@@ -8,29 +8,28 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 using Newtonsoft.Json;
 
-namespace Appointments_UI.Pages.Appointments
+namespace AppointmentsDetails.Pages.Appointments
 {
     using Appointments_API.Models;
     public class IndexModel : PageModel
     {
-
-        public List<Appointments> appointments = new();
+        public List<Appointments> Appointments = new();
 
         public async void OnGet()
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:5071");
+                client.BaseAddress = new Uri("http://localhost:5053");
                 //HTTP GET
-                var responseTask = client.GetAsync("Appointments");
+                var responseTask = client.GetAsync("Appointment");
                 responseTask.Wait();
 
                 var result = responseTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
-
                     var readTask = await result.Content.ReadAsStringAsync();
-                    appointments = JsonConvert.DeserializeObject<List<Appointments>>(readTask);
+
+                    Appointments = JsonConvert.DeserializeObject<List<Appointments>>(readTask);
                 }
 
             }

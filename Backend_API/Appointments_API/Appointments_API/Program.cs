@@ -1,9 +1,12 @@
+using System;
 using System.Text.Json.Serialization;
 using Appointments_API;
 using Appointments_API.Data;
 using Appointments_API.Interfaces;
 using Appointments_API.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 

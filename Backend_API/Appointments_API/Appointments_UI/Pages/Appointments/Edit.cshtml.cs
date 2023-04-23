@@ -1,5 +1,3 @@
-
-//C# backend code for edit page implementation 
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,28 +7,32 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 using Newtonsoft.Json;
-using HWK6.Pages;
+using AppointmentsDetails.Pages;
 using Appointments_API;
 
-namespace Appointments_UI.Pages.Appointments
+namespace AppointmentsDetails.Pages.Appointments
 {
     using Appointments_API.Models;
 
-    //Edits the item values
+    ///<summary>
+    ///Obtaining and Editing the appointment details of the patient.
+    ///</summary>
     public class EditModel : PageModel
     {
         public Appointments todo = new();
+        public List<Appointments> apps = new();
         public string errorMessage = "";
         public string successMessage = "";
 
         public async void OnGet()
         {
-            string id = Request.Query["appointment_id"];
+            string id = Request.Query["id"];
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:5053");
-                //HTTP GET
-                var responseTask = client.GetAsync("Appointments/" + id);
+
+                //HTTP GET request to get the appropriate appointment details of the patient to edit.
+                var responseTask = client.GetAsync("Appointment/" + id);
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -44,10 +46,11 @@ namespace Appointments_UI.Pages.Appointments
 
         public async void OnPost()
         {
+            /// Assigning the appointment details of the patient to local variables.
 
-            todo.appointment_id = int.Parse(Request.Form["appointment_id"]);
-            todo.doctor_id = int.Parse(Request.Form["appointment_id"]);
-            todo.patient_id = int.Parse(Request.Form["appointment_id"]);
+            todo.appointment_id = int.Parse(Request.Form["id"]);
+            todo.doctor_id = int.Parse(Request.Form["doctor_id"]);
+            todo.patient_id = int.Parse(Request.Form["patient_id"]);
             todo.appointment_time = DateTime.Parse(Request.Form["appointment_time"]);
             todo.patient_name = Request.Form["patient_name"];
             todo.doctor_name = Request.Form["doctor_name"];
@@ -68,17 +71,42 @@ namespace Appointments_UI.Pages.Appointments
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri("http://localhost:5053");
+                    var responseTask = client.GetAsync("Appointment/Analysis-GetAppointmentsByDoctor?dId=" + todo.doctor_id);
+                    responseTask.Wait();
+                    var resultList = responseTask.Result;
+                    bool flag = false;
+                    if (resultList.IsSuccessStatusCode)
+                    {
+                        var readTask = await resultList.Content.ReadAsStringAsync();
+                        apps = JsonConvert.DeserializeObject<List<Appointments>>(readTask);
+                    }
+                    foreach (var item in apps)
+                    {
+                        if (todo.appointment_time == item.appointment_time)
+                        {
+                            errorMessage = "This appointment time is already booked for the doctor";
+                            flag = true;
+                        }
+                    }
+                    if (flag == false)
+                    {
+                        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
-                    var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+                        ///<summary>
+                        ///HTTP PUT request to update the appropriate appointment details of the patient.
+                        ///</summary>
+                        var result = await client.PutAsync("Appointment", content);
+                        string resultContent = await result.Content.ReadAsStringAsync();
+                        Console.WriteLine(resultContent);
 
-                    var result = await client.PutAsync("Appointments", content);
-                    string resultContent = await result.Content.ReadAsStringAsync();
-                    Console.WriteLine(resultContent);
-
-                    if (!result.IsSuccessStatusCode) {
-                        errorMessage = "Error editing";
-                    } else {
-                        successMessage = "Successfully edited";
+                        if (!result.IsSuccessStatusCode)
+                        {
+                            errorMessage = "Error editing";
+                        }
+                        else
+                        {
+                            successMessage = "Successfully edited";
+                        }
                     }
                 }
             }
