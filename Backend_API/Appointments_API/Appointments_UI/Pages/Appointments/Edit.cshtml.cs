@@ -1,22 +1,26 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using HWK4.Models;
+using Appointments_API.Models;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 using Newtonsoft.Json;
-using HWK6.Pages;
+using AppointmentsDetails.Pages;
+using Appointments_API;
 
-namespace HWK6.Pages.Expenditures
+namespace AppointmentsDetails.Pages.Appointments
 {
-    using HWK4.Models;
+    using Appointments_API.Models;
 
-    //Edits the item values
+    ///<summary>
+    ///Obtaining and Editing the appointment details of the patient.
+    ///</summary>
     public class EditModel : PageModel
     {
-        public Expenditures todo = new();
+        public Appointments todo = new();
+        public List<Appointments> apps = new();
         public string errorMessage = "";
         public string successMessage = "";
 
@@ -25,50 +29,84 @@ namespace HWK6.Pages.Expenditures
             string id = Request.Query["id"];
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:5273");
-                //HTTP GET
-                var responseTask = client.GetAsync("Expenditures/" + id);
+                client.BaseAddress = new Uri("http://localhost:5053");
+
+                //HTTP GET request to get the appropriate appointment details of the patient to edit.
+                var responseTask = client.GetAsync("Appointment/" + id);
                 responseTask.Wait();
 
                 var result = responseTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
                     var readTask = await result.Content.ReadAsStringAsync();
-                    todo = JsonConvert.DeserializeObject<Expenditures>(readTask);
+                    todo = JsonConvert.DeserializeObject<Appointments>(readTask);
                 }
             }
         }
 
         public async void OnPost()
         {
-            todo.ID = int.Parse(Request.Form["ID"]);
-            todo.ExpenditureType = Request.Form["ExpenditureType"];
+            /// Assigning the appointment details of the patient to local variables.
 
-            todo.Expenditure = int.Parse(Request.Form["Expenditure"]);
+            todo.appointment_id = int.Parse(Request.Form["id"]);
+            todo.doctor_id = int.Parse(Request.Form["doctor_id"]);
+            todo.patient_id = int.Parse(Request.Form["patient_id"]);
+            todo.appointment_time = DateTime.Parse(Request.Form["appointment_time"]);
+            todo.patient_name = Request.Form["patient_name"];
+            todo.doctor_name = Request.Form["doctor_name"];
+            todo.doctor_department = Request.Form["doctor_department"];
+            todo.patient_disease = Request.Form["patient_disease"];
 
-            if (todo.ExpenditureType.Length == 0 || todo.Expenditure==0)
+            todo.patient_age = int.Parse(Request.Form["patient_age"]);
+
+            if (todo.appointment_time == null)
             {
-                errorMessage = "Expenditure Type is Required";
+                errorMessage = "Appointment Time is Required";
             }
             else
             {
                 var opt = new JsonSerializerOptions() { WriteIndented = true };
-                string json = System.Text.Json.JsonSerializer.Serialize<Expenditures>(todo, opt);
+                string json = System.Text.Json.JsonSerializer.Serialize<Appointments>(todo, opt);
 
                 using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("http://localhost:5273");
+                    client.BaseAddress = new Uri("http://localhost:5053");
+                    var responseTask = client.GetAsync("Appointment/Analysis-GetAppointmentsByDoctor?dId=" + todo.doctor_id);
+                    responseTask.Wait();
+                    var resultList = responseTask.Result;
+                    bool flag = false;
+                    if (resultList.IsSuccessStatusCode)
+                    {
+                        var readTask = await resultList.Content.ReadAsStringAsync();
+                        apps = JsonConvert.DeserializeObject<List<Appointments>>(readTask);
+                    }
+                    foreach (var item in apps)
+                    {
+                        if (todo.appointment_time == item.appointment_time)
+                        {
+                            errorMessage = "This appointment time is already booked for the doctor";
+                            flag = true;
+                        }
+                    }
+                    if (flag == false)
+                    {
+                        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
-                    var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+                        ///<summary>
+                        ///HTTP PUT request to update the appropriate appointment details of the patient.
+                        ///</summary>
+                        var result = await client.PutAsync("Appointment", content);
+                        string resultContent = await result.Content.ReadAsStringAsync();
+                        Console.WriteLine(resultContent);
 
-                    var result = await client.PutAsync("Expenditures", content);
-                    string resultContent = await result.Content.ReadAsStringAsync();
-                    Console.WriteLine(resultContent);
-
-                    if (!result.IsSuccessStatusCode) {
-                        errorMessage = "Error editing";
-                    } else {
-                        successMessage = "Successfully edited";
+                        if (!result.IsSuccessStatusCode)
+                        {
+                            errorMessage = "Error editing";
+                        }
+                        else
+                        {
+                            successMessage = "Successfully edited";
+                        }
                     }
                 }
             }

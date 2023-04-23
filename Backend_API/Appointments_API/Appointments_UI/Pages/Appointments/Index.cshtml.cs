@@ -1,28 +1,35 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using HWK4.Models;
+using Appointments_API.Models;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 using Newtonsoft.Json;
 
-namespace HWK6.Pages.Expenditures
+namespace AppointmentsDetails.Pages.Appointments
 {
-    using HWK4.Models;
+    using Appointments_API.Models;
+    
+    ///<summary>
+      /// Gets and Returns all the appointment details of the patient.
+    ///</summary>
     public class IndexModel : PageModel
     {
 
-        public List<Expenditures> expenditures = new();
+        public List<Appointments> appointments = new();
 
         public async void OnGet()
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:5273");
-                //HTTP GET
-                var responseTask = client.GetAsync("Expenditures");
+                client.BaseAddress = new Uri("http://localhost:5071");
+                
+                ///<summary>
+                   ///HTTP GET request to get all the appointments.
+                ///</summary>
+                var responseTask = client.GetAsync("Appointments");
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -30,7 +37,7 @@ namespace HWK6.Pages.Expenditures
                 {
 
                     var readTask = await result.Content.ReadAsStringAsync();
-                    expenditures = JsonConvert.DeserializeObject<List<Expenditures>>(readTask);
+                    appointments = JsonConvert.DeserializeObject<List<Appointments>>(readTask);
                 }
 
             }

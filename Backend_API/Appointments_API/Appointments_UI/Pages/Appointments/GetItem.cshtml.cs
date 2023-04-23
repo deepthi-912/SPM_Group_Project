@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
@@ -7,27 +7,36 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 
-namespace HWK6.Pages.Expenditures
+namespace AppointmentsDetails.Pages.Appointments
 {
-    using HWK4.Models;
-    // gets the item from the UI and displays the details
+    using Appointments_API.Models;
+    
+    ///<summary>
+      /// Gets the item inputs from the UI and displays the appointment details
+    ///</summary>
     public class GetItemModel : PageModel
     {
-        public Expenditures bill = new();
-            async void OnGet()
+        public Appointments ap = new();
+        public async void OnGet()
+        {
+
+            string id = Request.Query["appointment_id"];
+
+            using (var client = new HttpClient())
             {
-                int Id = int.Parse(Request.Form["Id"]);
-                using (var client = new HttpClient())
+                client.BaseAddress = new Uri("http://localhost:5053");
+                ///<summary>
+                  ///HTTP GET to obtain the appointment details based on the id
+                ///</summary>
+                var responseTask = client.GetAsync("Appointment/" + id);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
                 {
-                    var responseTask = client.GetAsync("http://localhost:5273/Expenditures/" + Id);
-                    responseTask.Wait();
-                    var result = responseTask.Result;
-                    if (result.IsSuccessStatusCode)
-                    {
-                        var readTask = await result.Content.ReadAsStringAsync();
-                        bill = JsonConvert.DeserializeObject<Expenditures>(readTask);
-                    }
+                    var readTask = await result.Content.ReadAsStringAsync();
+                    ap = JsonConvert.DeserializeObject<Appointments>(readTask);
+                }
             }
-         }
+        }
     }
 }
