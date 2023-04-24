@@ -21,11 +21,10 @@ namespace AppointmentsDetails.Pages.Appointments
         public List<Appointments> apps = new();
         public string errorMessage = "";
         public string successMessage = "";
-        public async void OnPost()
+        public async Task<IActionResult> OnPost()
         {
             /// Assigning the appointment details of the patient to local variables.
 
-            todo.appointment_id = int.Parse(Request.Form["appointment_id"]);
             todo.doctor_id = int.Parse(Request.Form["doctor_id"]);
             todo.patient_id = int.Parse(Request.Form["patient_id"]);
             todo.appointment_time = DateTime.Parse(Request.Form["appointment_time"]);
@@ -86,6 +85,7 @@ namespace AppointmentsDetails.Pages.Appointments
                     }
                 }
             }
+            return RedirectToPage("/Index");
         }
     }
 }
