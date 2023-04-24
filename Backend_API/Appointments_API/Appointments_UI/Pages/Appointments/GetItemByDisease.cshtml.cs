@@ -10,7 +10,9 @@ using Newtonsoft.Json;
 namespace AppointmentsDetails.Pages.Appointments
 {
     using Appointments_API.Models;
+    ///<summary>
     // gets the item from the UI and displays the details
+    ///</summary>
     public class GetItemByDiseaseModel : PageModel
     {
         public List<Appointments> ap = new();
