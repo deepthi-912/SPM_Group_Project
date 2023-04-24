@@ -37,3 +37,5 @@ namespace AppointmentsDetails.Pages.Shared
         }
     }
 }
+
+
