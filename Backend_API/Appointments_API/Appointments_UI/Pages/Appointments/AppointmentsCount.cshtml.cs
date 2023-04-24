@@ -1,4 +1,3 @@
-///Importing C# libraries 
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +18,7 @@ namespace AppointmentsDetails.Pages.Appointments
         public async void OnGet()
         {
             var client = new HttpClient();
-            var responseTask = client.GetAsync("https://localhost:5053/Appointment/Analysis-GetAppointmentsCount");
+            var responseTask = client.GetAsync("http://localhost:5053/Appointment/Analysis-GetAppointmentsCount");
             responseTask.Wait();
             var result = responseTask.Result;
             if (result.IsSuccessStatusCode)
