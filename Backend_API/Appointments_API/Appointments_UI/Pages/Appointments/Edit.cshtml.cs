@@ -44,7 +44,7 @@ namespace AppointmentsDetails.Pages.Appointments
             }
         }
 
-        public async void OnPost()
+        public async Task<IActionResult> OnPost()
         {
             /// Assigning the appointment details of the patient to local variables.
 
@@ -82,7 +82,7 @@ namespace AppointmentsDetails.Pages.Appointments
                     }
                     foreach (var item in apps)
                     {
-                        if (todo.appointment_time == item.appointment_time)
+                        if (todo.appointment_id != item.appointment_id && todo.appointment_time == item.appointment_time)
                         {
                             errorMessage = "This appointment time is already booked for the doctor";
                             flag = true;
@@ -110,6 +110,7 @@ namespace AppointmentsDetails.Pages.Appointments
                     }
                 }
             }
+            return RedirectToPage("/Index");
         }
     }
 }
