@@ -41,7 +41,7 @@ namespace AppointmentsDetails.Pages.Appointments
         }
 
 
-        public async void OnPost()
+        public async Task<IActionResult> OnPost()
         {
             bool isDeleted = false;
             int id = int.Parse(Request.Form["id"]);
@@ -68,6 +68,7 @@ namespace AppointmentsDetails.Pages.Appointments
             {
                 errorMessage = "Error deleting";
             }
+            return RedirectToPage("/Index");
         }
     }
 }
