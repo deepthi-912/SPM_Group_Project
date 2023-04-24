@@ -1,3 +1,6 @@
+///<summary>
+///Backend database creation 
+///</summary> 
 create database Appointments;
 
 CREATE TABLE Appointments.Appointments (
