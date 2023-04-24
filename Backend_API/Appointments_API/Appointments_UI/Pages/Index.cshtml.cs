@@ -11,6 +11,9 @@ using Newtonsoft.Json;
 namespace AppointmentsDetails.Pages.Shared
 {
     using Appointments_API.Models;
+    ///<summary>
+    ///HTTP GET request to get all the appointments.
+    ///</summary>
     public class IndexModel : PageModel
     {
 
