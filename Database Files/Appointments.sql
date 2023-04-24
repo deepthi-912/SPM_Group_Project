@@ -46,4 +46,3 @@ INSERT INTO Appointments.Appointments (doctor_id, patient_id, appointment_time, 
 select * from Appointments.Appointments;
 
 DROP TABLE Appointments.Appointments;
-
